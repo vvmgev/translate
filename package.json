@@ -1,0 +1,31 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ./dist/main.js",
+    "dev": "webpack --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.6.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "electron": "^5.0.6",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@electron/typescript-definitions": "^8.6.1",
+    "babel-loader": "^8.0.5",
+    "node-fetch": "^2.6.0",
+    "webpack": "^4.40.1"
+  }
+}
