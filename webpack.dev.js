@@ -5,6 +5,7 @@ const ASSET_PATH = process.env.ASSET_PATH || '/';
 module.exports = {
     mode: 'development',
     target: "electron-main",
+    // watch: true,
     entry: {
         main: ['@babel/polyfill', './src/main.ts'],
         preload: './src/preload.ts',
@@ -16,12 +17,10 @@ module.exports = {
         filename: "[name].js",
     },
     devtool: 'inline-source-map',
-
     module: {
         rules: [
             {
-                test: /\.(js|jsx|ts|tsx)$/,
-
+                test: /\.(ts|tsx|js|jsx)$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: "babel-loader",
@@ -30,11 +29,12 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [ '.ts', '.js' ]
+        extensions: [ '.ts', '.tss', '.js', '.jsx' ]
     },
     plugins: [
         new CopyPlugin([
             { from: 'src/index.html', to: '' },
+            { from: 'src/style.css', to: '' },
         ]),
     ],
 
