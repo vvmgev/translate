@@ -1,12 +1,15 @@
-import { app, BrowserWindow, globalShortcut } from 'electron';
+import { app, BrowserWindow, globalShortcut, Tray, Menu } from 'electron';
+import path from 'path';
 import { readText } from './services/Clipboard'
 import * as types from './typings'
 
 let mainWindow: types.BrowserWindow;
+let tray: Tray = null;
 
 const ready = (): void => {
   createWindow();
   registerListener();
+  createTray();
 };
 
 const registerListener = (): void => {
@@ -43,6 +46,19 @@ const createWindow = () => {
   if(process.env.NODE_ENV === 'development') { mainWindow.webContents.openDevTools()}
   mainWindow.loadFile('index.html');
   mainWindow.on('closed', () => mainWindow = null);
+};
+
+
+const createTray = (): void => {
+    tray = new Tray(path.join(app.getAppPath(), 'assets/translate.png'));
+    const contextMenu = Menu.buildFromTemplate([
+      { label: 'Quit',
+        click() {
+          app.quit();
+        }
+      }
+    ]);
+    tray.setContextMenu(contextMenu)
 };
 
 const showWindow = (): void => {

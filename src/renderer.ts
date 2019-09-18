@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron');
 
 window.addEventListener('DOMContentLoaded', () => {
     const url: string = 'https://translate.google.com/#view=home&op=translate&sl=en&tl=ru&text=';
-    const webview: Element = document.querySelector('webview');
+    const webview: Element = document.querySelector('#webview');
     const doLayout = () => {
         webview.src = url;
         const windowWidth: number = document.documentElement.clientWidth;
@@ -15,12 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     window.onresize = doLayout;
     window.onload = doLayout;
-    document.addEventListener('click', () => {
-        console.log('click');
-    });
-    document.addEventListener('keydown', () => {
-        console.log('keydown');
-    });
 
     ipcRenderer.on('translate', (event, word) => {
         webview.executeJavaScript(`document.querySelector('#source').value = '${word}'`).then(() => {
